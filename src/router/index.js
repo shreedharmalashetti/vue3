@@ -8,7 +8,7 @@ const routes = [
     component: () => import('../views/Chat.vue')
   },
   {
-    path: '/user',
+    path: '/user/:auth',
     name: 'User',
     component: () => import('../views/User.vue')
   }
