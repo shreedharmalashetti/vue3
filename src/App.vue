@@ -1,26 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <section class="hero is-fullheight">
+    <div class="hero-head navbar is-fixed-top has-background-primary">
+      <div class="tabs">
+        <a @click="$router.push('/user')">user</a>
+      </div>
+    </div>
+    <div class="hero-body">
+      <router-view/>
+    </div>
+  
+    
+  </section>
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  
+  
+  export default {
+    computed : {
+     
+    }
   }
-}
 </script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
