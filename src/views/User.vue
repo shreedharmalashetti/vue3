@@ -1,13 +1,16 @@
 <template>
-  <div class="container">
+  <div class="container has-text-centered">
+    <p>{{loading}}</p>
     
-    
-    <div>{{userData}}</div>
+    <div v-if="userData.name" class="box">
+      <h1>hello {{userData.name}}</h1>
+      <img :src="userData.profileUrl" alt="no photo" />
+    </div>
   
     <div class="field">
         <p class="help has-text-danger">{{error}}</p>
     </div>
-    <p>{{loading}}</p>
+  
       
     <div v-if="!uid">
       <SignIn v-if="formType==='signIn'" @signIn="signIn($event)" @signUp="formType='signUp'; "/>
@@ -29,7 +32,8 @@ export default {
   },
   data(){
     return{
-      userData:{},
+      userData:{
+      },
       uid : "",
       formType : "signIn",
       error:"",
@@ -79,7 +83,7 @@ export default {
         dataRef.set(event)
         .then(()=>{
           this.loading="done"
-          this.$router.push(`/chat/${this.uid}`)
+          //this.$router.push(`/chat/${this.uid}`)
         })
       })
       })
