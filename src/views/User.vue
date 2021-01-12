@@ -1,5 +1,5 @@
 <template>
-  <div class="container has-text-centered">
+  <div class="">
     <p>{{loading}}</p>
     
     <div v-if="userData.name" class="box">
@@ -11,11 +11,15 @@
         <p class="help has-text-danger">{{error}}</p>
     </div>
   
-      
-    <div v-if="!uid">
-      <SignIn v-if="formType==='signIn'" @signIn="signIn($event)" @signUp="formType='signUp'; "/>
-      <SignUp v-if="formType==='signUp'" @signUp="signUp($event)" @signIn="formType='signIn'; "/>
+    <div v-if="!uid" class="modal is-active section">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <SignIn v-if="formType==='signIn'" @signIn="signIn($event)" @signUp="formType='signUp'; "/>
+        <SignUp v-if="formType==='signUp'" @signUp="signUp($event)" @signIn="formType='signIn'; "/>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
+    
     
     
   </div>

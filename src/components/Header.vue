@@ -1,10 +1,10 @@
 <template>
       
-    <div class="navbar is-fixed-top " role="navigation" aria-label="main navigation">
-      <div class="navbar-brand   has-background-primary">
-        <router-link class="navbar-item" to="/user/user">User</router-link> 
-        <router-link class="navbar-item" to="/chat">Chat</router-link> 
-      
+    <div class="navbar  is-transparent has-shadow is-fixed-top " role="navigation" aria-label="main navigation">
+      <div class="navbar-brand ">
+        <div class="navbar-item">
+          <h1 class="title">app</h1>
+        </div>
         <a role="button" @click = "toggle" :class="show" class="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -15,10 +15,9 @@
       
           
       
-      <div :class="show" class="navbar-menu  ">
-        <div class="navbar-start">
-          <a class="navbar-item" @click="navigate('/user')" >User</a> 
-          <a class="navbar-item" @click="navigate('/chat')" >Chat</a> 
+      <div :class="show" class=" navbar-menu ">
+        <div v-for="route in routes" :key="route" class="navbar-start">
+          <a class="navbar-item" @click="navigate(route.path)" >{{route.name}}</a> 
         </div>
        
         <div class="navbar-end ">
@@ -36,7 +35,21 @@
     name : "Header",
     data(){
       return {
-        show : ""
+        show : "",
+        routes:[
+          {
+          name :"Home",
+          path : "/home"
+          },
+          {
+          name :"User",
+          path : "/user/user"
+          },
+          {
+          name :"Chat",
+          path : "/chat/chat"
+          },
+        ]
       };
     },
     methods : {

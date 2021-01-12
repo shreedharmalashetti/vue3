@@ -1,9 +1,9 @@
 <template>
-  <section class="hero is-fullheight">
-    <div class="hero-head navbar is-fixed-top has-background-primary">
+  <section class="">
+    <div class="">
       <Header/>
     </div>
-    <div class="hero-body">
+    <div class=" ">
       <router-view/>
     </div>
   

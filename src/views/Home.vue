@@ -1,18 +1,57 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="column is-6">
+    <div class="tabs is-boxed">
+       <ul v-for="(tab,i) in tabs" :key="i">
+         <li :class="tab.active" >
+           <a  @click="switchTab(i)">{{tab.name}}</a>
+         </li>
+       </ul>
+    </div>
+  </div>
+  <div>
+    <p >{{tabContent}}</p>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+//mportt HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+  //  HelloWorld
+  },
+  data(){
+  return{
+    tabContent: null,
+    tabs:[
+      {
+        name:"name",
+        content:"shreedhar",
+        active:""
+      },
+      {
+        name:"surname",
+        content:"malashetti",
+        active:""
+      },
+      {
+        name:"address",
+        content:"kajibilagi",
+        active:""
+      },
+    ]
+  }
+  },
+  methods:{
+    switchTab(i){
+      this.tabContent=this.tabs[i].content
+      this.tabs.forEach((tab)=>{
+        tab.active=''
+      })
+      this.tabs[i].active='is-active'
+    }
   }
 }
 </script>

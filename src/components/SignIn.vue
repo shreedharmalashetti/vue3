@@ -1,7 +1,7 @@
 <template>
   <div class="box">
    <p>{{msg}}</p>
-    <div class="field">
+    <div class="field ">
       <label class="label">email</label>
       <div class="control">
         <input v-model="form.email" class="input is-rounded is-success" type="email" placeholder="email">
@@ -22,7 +22,7 @@
         <button @click="signIn" class="button is-fullwidth is-success">
             signin
         </button>
-        <h1 class="is-size-4 has-text-centered">or</h1>
+        <h1 class="is-size-4">or</h1>
         <a @click="$emit('signUp')">click here to signUp</a>
     </div>
   </div>
