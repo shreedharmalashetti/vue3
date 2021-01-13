@@ -1,6 +1,5 @@
 <template>
   <div class="box">
-   <p>{{msg}}</p>
     <div class="field ">
       <label class="label">email</label>
       <div class="control">
@@ -45,9 +44,7 @@ export default {
     };
   },
   props:{
-    msg : {
-      type:String
-    }
+
   },
   methods: {
     signIn() {

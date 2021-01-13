@@ -1,23 +1,24 @@
 <template>
   <div class="">
-    <p>{{loading}}</p>
+   
     
     <div v-if="userData.name" class="box">
       <h1>hello {{userData.name}}</h1>
       <img :src="userData.profileUrl" alt="no photo" />
     </div>
   
-    <div class="field">
-        <p class="help has-text-danger">{{error}}</p>
-    </div>
-  
+        
     <div v-if="!uid" class="modal is-active section">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <SignIn v-if="formType==='signIn'" @signIn="signIn($event)" @signUp="formType='signUp'; "/>
-        <SignUp v-if="formType==='signUp'" @signUp="signUp($event)" @signIn="formType='signIn'; "/>
+        <div class="field has-text-centered">
+          <p v-if="!error" class="has-text-success">{{loading}}</p>
+          <p class="help has-text-danger">{{error}}</p>
+        </div>
+        <SignIn v-if="formType==='signIn' " @signIn="signIn($event)" @signUp="formType='signUp'; "/>
+        <SignUp v-if="formType==='signUp' " @signUp="signUp($event)" @signIn="formType='signIn'; "/>
       </div>
-      <button class="modal-close is-large" aria-label="close"></button>
+      <button @click="$router.go(-1)" class="modal-close is-large" aria-label="close"></button>
     </div>
     
     
@@ -49,11 +50,13 @@ export default {
   },
   methods :{
     signIn(event){
+      this.loading="signing in"
       auth.signInWithEmailAndPassword(event.email,event.password)
       .then(data => {
-        this.uid=data.user.uid
+        const uid=data.user.uid
         this.error=""
-        this.getUserData();
+        this.loading="getting user data"
+        this.getUserData(uid);
         //this.$router.push(`/chat/${this.uid}`)
       })
       .catch((err)=>{
@@ -64,8 +67,9 @@ export default {
       this.loading="signing up"
      auth.createUserWithEmailAndPassword(event.email,event.password)
      .then(data => {
-        this.uid = data.user.uid;
-        event.uid = data.user.uid;
+        const uid = data.user.uid;
+        event.uid = uid;
+        this.error=""
         this.onUpload(event)
       })
       .catch((err) => {
@@ -74,8 +78,8 @@ export default {
     },
     onUpload(event){
       this.loading= "uploading photo"
-      const dataRef = db.collection('users').doc(`${this.uid}`)
-      const storageRef = storage.ref(`profilephotos/${this.uid}`);
+      const dataRef = db.collection('users').doc(`${event.uid}`)
+      const storageRef = storage.ref(`profilephotos/${event.uid}`);
       storageRef.put(event.file)
       .then((snapshot)=>{
         snapshot.ref.getDownloadURL()
@@ -87,16 +91,19 @@ export default {
         dataRef.set(event)
         .then(()=>{
           this.loading="done"
+          this.uid=event.uid
           //this.$router.push(`/chat/${this.uid}`)
         })
       })
       })
     },
-    getUserData(){
-      const dataRef = db.collection('users').doc(`${this.uid}`)
+    getUserData(uid){
+      const dataRef = db.collection('users').doc(`${uid}`)
       dataRef.get()
       .then((doc)=>{
         this.userData=doc.data()
+        this.uid=uid
+        this.loading = "done"
       })
       
     },
