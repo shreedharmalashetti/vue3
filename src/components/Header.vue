@@ -42,6 +42,10 @@
           path : "/home"
           },
           {
+          name :"Telegram",
+          path : "/telegram"
+          },
+          {
           name :"User",
           path : "/user/user"
           },

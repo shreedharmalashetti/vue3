@@ -8,6 +8,11 @@ const routes = [
     component: () => import('../views/Chat.vue')
   },
   {
+    path: '/telegram',
+    name: 'Telegram',
+    component: () => import('../views/Telegram.vue')
+  },
+  {
     path: '/home',
     name: 'Home',
     component: () => import('../views/Home.vue')
