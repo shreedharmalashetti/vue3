@@ -1,8 +1,10 @@
 <template>
   <section class="">
-    <div class="">
+    <div>
       <Header/>
     </div>
+    
+   
     <div class=" ">
       <router-view/>
     </div>
@@ -19,9 +21,6 @@ import Header from './components/Header.vue'
     components:{
       Header
     },
-    computed : {
-     
-    }
   }
 </script>
 <style>

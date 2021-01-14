@@ -1,6 +1,8 @@
 <template>
   <div class="">
-   
+    <div v-if="uid" class="has-text-right">
+      <button @click="signOut" class="button is-danger">sign out</button>
+    </div>
     
     <div v-if="userData.name" class="box">
       <h1>hello {{userData.name}}</h1>
@@ -8,7 +10,7 @@
     </div>
   
         
-    <div v-if="!uid" class="modal is-active section">
+    <div v-if="uid===''" class="modal is-active section">
       <div class="modal-background"></div>
       <div class="modal-content">
         <div class="field has-text-centered">
@@ -39,25 +41,31 @@ export default {
     return{
       userData:{
       },
-      uid : "",
+      uid : null,
       formType : "signIn",
       error:"",
       loading : ""
     }  
   },
   mounted(){
-   
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.uid=user.uid;
+        this.getUserData(this.uid);
+      } 
+      else {
+        this.uid=""
+      }
+    });
   },
   methods :{
     signIn(event){
       this.loading="signing in"
       auth.signInWithEmailAndPassword(event.email,event.password)
-      .then(data => {
-        const uid=data.user.uid
+      .then(() => {
         this.error=""
         this.loading="getting user data"
-        this.getUserData(uid);
-        //this.$router.push(`/chat/${this.uid}`)
+        this.$router.push('/')
       })
       .catch((err)=>{
         this.error=err.message
@@ -91,8 +99,7 @@ export default {
         dataRef.set(event)
         .then(()=>{
           this.loading="done"
-          this.uid=event.uid
-          //this.$router.push(`/chat/${this.uid}`)
+          this.$router.push('/')
         })
       })
       })
@@ -102,11 +109,15 @@ export default {
       dataRef.get()
       .then((doc)=>{
         this.userData=doc.data()
-        this.uid=uid
-        this.loading = "done"
       })
       
     },
+    signOut(){
+      auth.signOut().then(()=>{
+        this.uid="";
+        this.$router.push('/')
+      })
+    }
     
   }
 }

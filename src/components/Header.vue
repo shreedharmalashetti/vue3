@@ -21,9 +21,7 @@
         </div>
        
         <div class="navbar-end ">
-          <div class="navbar-item buttons">
-            <a class="button is-primary" @click="navigate('/user/signIn')" >sign in</a>
-          </div>
+       
         </div>
       </div>
         
@@ -39,7 +37,7 @@
         routes:[
           {
           name :"Home",
-          path : "/home"
+          path : "/"
           },
           {
           name :"Telegram",
@@ -56,6 +54,7 @@
         ]
       };
     },
+
     methods : {
       toggle(){
         this.show ==='' ? this.show='is-active' : this.show=''

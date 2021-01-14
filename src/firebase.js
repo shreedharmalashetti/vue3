@@ -23,10 +23,10 @@ const auth = firebase.auth()
 const storage = firebase.storage()
 
 
-
 // export utils/refs
 export {
   db,
   auth,
-  storage
+  storage,
+ 
 }

@@ -14,13 +14,11 @@
 </template>
 
 <script>
-// @ is an alias to /src
-//mportt HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
-  //  HelloWorld
+  
   },
   data(){
   return{
