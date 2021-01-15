@@ -1,11 +1,11 @@
 <template>
       
-    <div class="navbar  is-transparent has-shadow is-fixed-top " role="navigation" aria-label="main navigation">
-      <div class="navbar-brand ">
+    <div class="navbar has-shadow is-transparent is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand has-background-primary ">
         <div class="navbar-item">
-          <h1 class="title">app</h1>
+          <h1 class="title ">app</h1>
         </div>
-        <a role="button" @click = "toggle" :class="show" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <a role="button" @click = "toggle" :class="show" class="navbar-burger is-large" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -15,15 +15,15 @@
       
           
       
-      <div :class="show" class=" navbar-menu ">
-        <div v-for="route in routes" :key="route" class="navbar-start">
-          <a class="navbar-item" @click="navigate(route.path)" >{{route.name}}</a> 
-        </div>
        
+      <div :class="show" class="navbar-menu  ">
         <div class="navbar-end ">
-       
+          <div v-for="route in routes" :key="route" class="navbar-item" >
+            <a @click="navigate(route.path)" >{{route.name}}</a> 
+          </div>
         </div>
       </div>
+       
         
     </div>
 </template>

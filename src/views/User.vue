@@ -39,8 +39,7 @@ export default {
   },
   data(){
     return{
-      userData:{
-      },
+      userData:{ },
       uid : null,
       formType : "signIn",
       error:"",
@@ -64,7 +63,7 @@ export default {
       auth.signInWithEmailAndPassword(event.email,event.password)
       .then(() => {
         this.error=""
-        this.loading="getting user data"
+        this.loading="done"
       })
       .catch((err)=>{
         this.error=err.message
@@ -113,6 +112,7 @@ export default {
     signOut(){
       auth.signOut().then(()=>{
         this.uid="";
+        this.loading=""
       })
     }
     

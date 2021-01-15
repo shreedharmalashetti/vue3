@@ -27,21 +27,21 @@ import Header from './components/Header.vue'
       auth.onAuthStateChanged((user) => {
       if (user) {
         this.isAuthenticated=true
+        this.$router.beforeEach(async (to, from, next) => {
+          const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+          if (requiresAuth && !this.isAuthenticated){
+           next('/');
+          }
+          else{
+           next();
+          }
+        });
       } 
       else {
         this.isAuthenticated=false;
       }
-      }),
-      
-      this.$router.beforeEach(async (to, from, next) => {
-        const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-        if (requiresAuth && !this.isAuthenticated){
-         next('/');
-        }
-        else{
-         next();
-        }
       });
+      
     }
   }
 </script>

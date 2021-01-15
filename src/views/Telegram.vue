@@ -1,4 +1,5 @@
 <template>
+<div>
   
   <div v-if="isModel" class="modal is-active section">
       <div class="modal-background"></div>
@@ -27,6 +28,7 @@
     </div>
   </div>
   
+</div>
 </template>
 <script>
 import {db} from '../firebase.js'
