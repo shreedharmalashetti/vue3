@@ -1,5 +1,5 @@
 <template>
-  <div class="section has-text-centerd ">
+  <div class="section has-text-centered ">
     <p>welcome to my app</p>
   </div>
 <!--  <div class="column is-6">
