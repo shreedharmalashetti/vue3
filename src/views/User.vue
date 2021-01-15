@@ -4,7 +4,7 @@
       <button @click="signOut" class="button is-danger">sign out</button>
     </div>
     
-    <div v-if="userData.name" class="box">
+    <div v-if="uid" class="box">
       <h1>hello {{userData.name}}</h1>
       <img :src="userData.profileUrl" alt="no photo" />
     </div>
@@ -20,7 +20,7 @@
         <SignIn v-if="formType==='signIn' " @signIn="signIn($event)" @signUp="formType='signUp'; "/>
         <SignUp v-if="formType==='signUp' " @signUp="signUp($event)" @signIn="formType='signIn'; "/>
       </div>
-      <button @click="$router.go(-1)" class="modal-close is-large" aria-label="close"></button>
+      <button @click="$router.push('/')" class="modal-close is-large" aria-label="close"></button>
     </div>
     
     
@@ -65,7 +65,6 @@ export default {
       .then(() => {
         this.error=""
         this.loading="getting user data"
-        this.$router.push('/')
       })
       .catch((err)=>{
         this.error=err.message
@@ -99,7 +98,6 @@ export default {
         dataRef.set(event)
         .then(()=>{
           this.loading="done"
-          this.$router.push('/')
         })
       })
       })
@@ -115,7 +113,6 @@ export default {
     signOut(){
       auth.signOut().then(()=>{
         this.uid="";
-        this.$router.push('/')
       })
     }
     
