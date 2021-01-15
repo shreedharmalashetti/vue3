@@ -1,5 +1,8 @@
 <template>
-  <div class="column is-6">
+  <div class="section has-text-centerd ">
+    <p>welcome to my app</p>
+  </div>
+<!--  <div class="column is-6">
     <div class="tabs is-boxed">
        <ul v-for="(tab,i) in tabs" :key="i">
          <li :class="tab.active" >
@@ -11,10 +14,11 @@
   <div>
     <p >{{tabContent}}</p>
   </div>
+  -->
 </template>
 
 <script>
-
+/*
 export default {
   name: 'Home',
   components: {
@@ -51,5 +55,5 @@ export default {
       this.tabs[i].active='is-active'
     }
   }
-}
+}*/
 </script>
