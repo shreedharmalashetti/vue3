@@ -1,11 +1,12 @@
 <template>
 <div>
  
- <!-- <div class="has-text-centered">
-    <button @click="photos=highPhotos" class="button is-primary mx-2">highPhotos</button>
-    <button @click="photos=lowPhotos" class="button is-primary is-light mx-2">lowPhotos</button>
+  <div class="has-text-centered">
+    <button @click="photos=highPhotos" class="button is-info mx-2">high quality</button>
+    <button disabled="" class="button ">photos: {{photosLength}}</button>
+    <button @click="photos=lowPhotos" class="button is-info is-light mx-2">low quality</button>
   </div>
-  -->
+  
   
  
   
@@ -44,6 +45,7 @@ export default {
   data(){
     return{
     photos:null,
+    photosLength:null,
     highPhotos:[],
     lowPhotos:[],
     isModel:false,
@@ -52,13 +54,16 @@ export default {
   },
   mounted(){
    this.getDoc();
-   this.photos=this.highPhotos;
+   this.photos=this.lowPhotos;
+  },
+  computed:{
   },
   methods:{
     getDoc(){
     const doc=db.collection("telegram").doc("Shreedhar malashetti")
     doc.get()
     .then(doc=> {
+      this.photosLength=doc.data().photos.length;
       doc.data().photos.forEach((photo)=>{
         this.highPhotos.push(photo.highPhoto)
         this.lowPhotos.push(photo.lowPhoto)
