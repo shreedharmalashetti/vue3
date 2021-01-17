@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div v-if="uid" class="has-text-right">
+    <div v-if="uid" class="has-text-centered">
       <button @click="signOut" class="button is-danger">sign out</button>
     </div>
     

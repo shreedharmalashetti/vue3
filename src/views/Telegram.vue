@@ -1,5 +1,13 @@
 <template>
 <div>
+ 
+ <!-- <div class="has-text-centered">
+    <button @click="photos=highPhotos" class="button is-primary mx-2">highPhotos</button>
+    <button @click="photos=lowPhotos" class="button is-primary is-light mx-2">lowPhotos</button>
+  </div>
+  -->
+  
+ 
   
   <div v-if="isModel" class="modal is-active section">
       <div class="modal-background"></div>
@@ -10,7 +18,7 @@
   </div>
    
       
-  <div class="columns is-mobile ">
+  <div class="columns ">
     <div class="column is-4">
       <div v-for="(photo,i) in photos" :key='i' class="">
         <img @click="showPhoto(photo)" v-if="i%3===0" :src="photo" alt="no photo" />
@@ -35,21 +43,26 @@ import {db} from '../firebase.js'
 export default {
   data(){
     return{
-      photos:[],
+    photos:null,
+    highPhotos:[],
+    lowPhotos:[],
     isModel:false,
     modelPhoto:""
     }
   },
   mounted(){
    this.getDoc();
+   this.photos=this.highPhotos;
   },
   methods:{
     getDoc(){
     const doc=db.collection("telegram").doc("Shreedhar malashetti")
-   
     doc.get()
     .then(doc=> {
-      this.photos=doc.data().photos
+      doc.data().photos.forEach((photo)=>{
+        this.highPhotos.push(photo.highPhoto)
+        this.lowPhotos.push(photo.lowPhoto)
+      })
     })
     .catch((err)=>{
       alert(err.message)
