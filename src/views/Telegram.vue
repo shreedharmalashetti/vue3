@@ -54,7 +54,7 @@ export default {
   },
   mounted(){
    this.getDoc();
-   this.photos=this.lowPhotos;
+   this.photos=this.highPhotos;
   },
   computed:{
   },

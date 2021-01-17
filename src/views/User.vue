@@ -1,10 +1,7 @@
 <template>
   <div class="">
-    <div v-if="uid" class="has-text-centered">
-      <button @click="signOut" class="button is-danger">sign out</button>
-    </div>
-    
-    <div v-if="uid" class="box">
+    <div v-if="uid" class="box has-text-centered">
+      <button @click="signOut" class="button is-overlay is-danger">sign out</button>
       <h1>hello {{userData.name}}</h1>
       <img :src="userData.profileUrl" alt="no photo" />
     </div>
