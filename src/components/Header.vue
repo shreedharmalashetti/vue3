@@ -9,7 +9,7 @@
         <div v-else class="navbar-item">
           <span @click="$router.go(-1)">⬅️ back</span>
         </div>
-        <a role="button" @click = "toggle" :class="show" class="navbar-burger is-large" aria-label="menu" aria-expanded="false">
+        <a v-if="$route.path==='/'" role="button" @click = "toggle" :class="show" class="navbar-burger is-large" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -18,8 +18,8 @@
      
       <div :class="show" class="navbar-menu  ">
         <div class="navbar-end">
-          <div v-for="route in routes" :key="route" class="navbar-item" >
-            <a @click="navigate(route.path)" >{{route.name}}</a> 
+          <div v-for="route in $router.options.routes" :key="route.path" class="navbar-item" >
+            <a @click="navigate(route.path)">{{route.name}}</a> 
           </div>
         </div>
       </div>
@@ -34,25 +34,7 @@
     name : "Header",
     data(){
       return {
-        show : "",
-        routes:[
-          {
-          name :"Home",
-          path : "/"
-          },
-          {
-          name :"Telegram",
-          path : "/telegram"
-          },
-          {
-          name :"User",
-          path : "/user/user"
-          },
-          {
-          name :"Chat",
-          path : "/chat/chat"
-          },
-        ]
+        show : ""
       };
     },
     props:['title'],
