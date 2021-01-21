@@ -1,6 +1,6 @@
 <template>
   <div v-if="isAuthenticated">
-    <Header/>
+    <Header title="hello"/>
   </div>
   <div v-if="isAuthenticated===false" class="section has-text-centered">
     <a @click="$router.push('/user/signIn')" class="button is-primary">go to signIn page</a>
