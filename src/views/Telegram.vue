@@ -65,8 +65,8 @@ export default {
     .then(doc=> {
       this.photosLength=doc.data().photos.length;
       doc.data().photos.forEach((photo)=>{
-        this.highPhotos.push(photo.highPhoto)
-        this.lowPhotos.push(photo.lowPhoto)
+        this.highPhotos.push(photo.high)
+        this.lowPhotos.push(photo.low)
       })
     })
     .catch((err)=>{
