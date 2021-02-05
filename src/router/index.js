@@ -5,12 +5,12 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('../views/Home.vue')
+    component: () => import(/* webpackChunkName: "[request]" */ '../views/Home.vue')
   },
   {
     path: '/chat/:uid',
     name: 'Chat',
-    component: () => import('../views/Chat.vue'),
+    component: () => import(/* webpackChunkName: "[request]" */ '../views/Chat.vue'),
     meta: {
       requiresAuth: true
     }
@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/telegram',
     name: 'Telegram',
-    component: () => import('../views/Telegram.vue'),
+    component: () => import(/* webpackChunkName: "[request]" */ '../views/Telegram.vue'),
     meta: {
       requiresAuth: true
     }
@@ -26,7 +26,7 @@ const routes = [
   {
     path: '/user/:auth',
     name: 'User',
-    component: () => import('../views/User.vue')
+    component: () => import(/* webpackChunkName: "[request]" */ '../views/User.vue')
   }
 ]
 
